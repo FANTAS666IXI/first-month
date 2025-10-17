@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import translations from "../Data/translations";
 
 function Carousel() {
@@ -8,6 +8,29 @@ function Carousel() {
 
   const handlePrev = () => setDay((prev) => (prev > 1 ? prev - 1 : 31));
   const handleNext = () => setDay((prev) => (prev < 31 ? prev + 1 : 1));
+
+  // --- Control por teclado ---
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      switch (e.code) {
+        case "ArrowLeft":
+        case "KeyA":
+          handlePrev();
+          break;
+        case "ArrowRight":
+        case "KeyD":
+          handleNext();
+          break;
+        default:
+          break;
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    // Limpieza del listener al desmontar
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <div className="carousel-wrapper">

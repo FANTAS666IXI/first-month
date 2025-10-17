@@ -25,6 +25,11 @@ html {
   background-color: var(--background);
 }
 
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /* --- Wrapper --- */
 .carousel-wrapper {
   position: fixed;
@@ -68,22 +73,29 @@ html {
 
 .controls i.replay {
   pointer-events: none; /* decorativo, sin interacción */
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(227, 227, 227, 0.4); /* más tenue que play */
   border-radius: 50%;
   width: 45px;
   height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #767676; /* color más apagado para indicar inactivo */
+  font-size: 1.5rem;
+  transition: none; /* sin animación para inactivo */
+  cursor: default; /* no interactivo */
+}
+
+/* si más adelante se activa, se puede cambiar el estilo con una clase activa */
+.controls i.replay.active {
+  background: rgba(255, 255, 255, 0.4);
   color: #333;
-  font-size: 1.4rem;
 }
 
 button.play {
   background: rgba(255, 255, 255, 0.4);
   border: none;
   color: #333;
-  font-size: 2rem;
   font-weight: bold;
   border-radius: 50%;
   width: 45px;
@@ -194,7 +206,8 @@ button.play i {
 }
 
 .arrow i {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  transform: scaleX(1.2); /* ligeramente más ancho horizontalmente */
 }
 
 /* --- Version watermark --- */

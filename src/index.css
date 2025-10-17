@@ -56,13 +56,17 @@ html {
 }
 
 .carousel-text-box {
+  position: relative;
   margin-top: 40px;
   width: 80%;
   text-align: center;
   background: rgba(255, 255, 255, 0.2);
-  padding: 15px 20px;
+  padding: 15px 60px; /* extra space so text doesn't overlap arrows */
   border-radius: 15px;
   backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel-text-box p {
@@ -70,6 +74,51 @@ html {
   font-weight: 500;
   color: #333;
   line-height: 1.4;
+  margin: 0;
+  z-index: 1;
+}
+
+/* --- Arrows --- */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  color: #333;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.arrow.left {
+  left: -60px; /* move outside left edge */
+}
+
+.arrow.right {
+  right: -60px; /* move outside right edge */
+}
+
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.arrow:active {
+  transform: translateY(-50%) scale(1);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.arrow i {
+  font-size: 1.4rem;
 }
 
 .version__watermark {

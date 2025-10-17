@@ -25,6 +25,7 @@ html {
   background-color: var(--background);
 }
 
+/* --- Wrapper --- */
 .carousel-wrapper {
   position: fixed;
   top: 50%;
@@ -37,12 +38,18 @@ html {
   align-items: center;
 }
 
-/* Mueve el indicador fuera del área del carrusel */
-.day-indicator {
-  position: relative; /* ya no absolute */
-  align-self: flex-start;
+/* --- Header --- */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
-  margin-left: 20px;
+  padding: 0 20px;
+}
+
+/* --- Day indicator --- */
+.day-indicator {
   font-size: 1.4rem;
   font-weight: bold;
   color: #222;
@@ -53,6 +60,56 @@ html {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* --- Controls (Replay y Play) --- */
+.controls {
+  display: flex;
+  gap: 15px;
+}
+
+.controls i.replay {
+  pointer-events: none; /* decorativo, sin interacción */
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-size: 1.4rem;
+}
+
+button.play {
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  color: #333;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.play:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.15);
+}
+
+button.play:active {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1);
+}
+
+button.play i {
+  font-size: 1.4rem;
+}
+
+/* --- Carousel --- */
 .carousel {
   width: 100%;
   max-height: 700px;
@@ -72,13 +129,15 @@ html {
   border-radius: 20px;
 }
 
+/* --- Text box --- */
 .text-box {
   position: relative;
   margin-top: 40px;
   width: 80%;
   text-align: center;
   background: rgba(255, 255, 255, 0.2);
-  padding: 15px 60px; /* extra space so text doesn't overlap arrows */
+  padding: 15px 60px; /* espacio extra para flechas */
+  border: 4px solid rgba(255, 255, 255, 0.4);
   border-radius: 15px;
   backdrop-filter: blur(10px);
   display: flex;
@@ -95,7 +154,7 @@ html {
   z-index: 1;
 }
 
-/* --- Arrows --- */
+/* --- Carousel arrows --- */
 .arrow {
   position: absolute;
   top: 50%;
@@ -109,7 +168,7 @@ html {
   width: 45px;
   height: 45px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.5s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,11 +176,11 @@ html {
 }
 
 .arrow.left {
-  left: -60px; /* move outside left edge */
+  left: -60px; /* fuera del text box */
 }
 
 .arrow.right {
-  right: -60px; /* move outside right edge */
+  right: -60px;
 }
 
 .arrow:hover {
@@ -130,14 +189,15 @@ html {
 }
 
 .arrow:active {
-  transform: translateY(-50%) scale(1);
   background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1);
 }
 
 .arrow i {
   font-size: 1.4rem;
 }
 
+/* --- Version watermark --- */
 .version__watermark {
   position: fixed;
   top: 0;

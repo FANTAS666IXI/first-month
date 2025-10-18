@@ -5,7 +5,6 @@ function Carousel() {
   const lang = "en";
   const [day, setDay] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [imgSize, setImgSize] = useState({ width: "auto", height: "auto" });
   const imgRef = useRef(null);
   const carouselRef = useRef(null);
 
@@ -59,6 +58,7 @@ function Carousel() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [day, isTransitioning]);
 
   // --- Adjust carousel size on mount & every new image ---

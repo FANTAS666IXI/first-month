@@ -132,13 +132,24 @@ button.play i {
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   background: var(--invisible);
+  transition: width 0.6s ease-in-out, height 0.6s ease-in-out; /* smooth resize */
 }
 
 .carousel img {
   max-width: 100%;
-  max-height: 100%;
+  height: auto;
   object-fit: contain;
   border-radius: 20px;
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.carousel img.fade-out {
+  opacity: 0;
+}
+
+.carousel img.visible {
+  opacity: 1;
 }
 
 /* --- Text box --- */

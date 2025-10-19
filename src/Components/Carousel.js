@@ -3,6 +3,10 @@ import translations from "../Data/translations";
 
 function Carousel() {
   const lang = "en";
+  const TOTAL_DAYS = 31;
+  const FADE_OUT_DURATION = 500;
+  const TRANSITION_END_DELAY = 1000;
+  const AUTOPLAY_DELAY = 3000;
   const [day, setDay] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isAutoplay, setIsAutoplay] = useState(false);
@@ -10,7 +14,6 @@ function Carousel() {
   const carouselRef = useRef(null);
   const autoplayRef = useRef(null);
 
-  const totalDays = 31;
   const sentence = translations[lang].carousel[day];
 
   // --- Adjust carousel size when image loads ---
@@ -27,27 +30,19 @@ function Carousel() {
     if (isTransitioning) return;
     setIsTransitioning(true);
 
-    // Step 1: fade out
-    setTimeout(() => {
-      // Step 2: change image after fade out
-      setDay(newDay);
-    }, 500);
-
-    // Step 3: end transition after full duration
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 1000);
+    setTimeout(() => setDay(newDay), FADE_OUT_DURATION);
+    setTimeout(() => setIsTransitioning(false), TRANSITION_END_DELAY);
   };
 
   // --- Manual navigation stops autoplay ---
   const handlePrev = (fromAutoplay = false) => {
     if (isAutoplay && !fromAutoplay) stopAutoplay();
-    changeDay(day > 1 ? day - 1 : totalDays);
+    changeDay(day > 1 ? day - 1 : TOTAL_DAYS);
   };
 
   const handleNext = (fromAutoplay = false) => {
     if (isAutoplay && !fromAutoplay) stopAutoplay();
-    changeDay(day < totalDays ? day + 1 : 1);
+    changeDay(day < TOTAL_DAYS ? day + 1 : 1);
   };
 
   // --- Keyboard control ---
@@ -87,8 +82,8 @@ function Carousel() {
 
     if (isAutoplay) {
       autoplayRef.current = setTimeout(() => {
-        if (!isTransitioning) handleNext(true); // ✅ pass fromAutoplay = true
-      }, 3000);
+        if (!isTransitioning) handleNext(true);
+      }, AUTOPLAY_DELAY);
     }
 
     return () => clearTimeout(autoplayRef.current);
@@ -96,13 +91,7 @@ function Carousel() {
   }, [isAutoplay, day, isTransitioning]);
 
   // --- Autoplay control helpers ---
-  const toggleAutoplay = () => {
-    setIsAutoplay((prev) => {
-      const newState = !prev;
-      return newState;
-    });
-  };
-
+  const toggleAutoplay = () => setIsAutoplay((prev) => !prev);
   const stopAutoplay = () => {
     clearTimeout(autoplayRef.current);
     setIsAutoplay(false);

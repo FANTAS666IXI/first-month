@@ -39,8 +39,16 @@ function Carousel() {
     }, 1000);
   };
 
-  const handlePrev = () => changeDay(day > 1 ? day - 1 : totalDays);
-  const handleNext = () => changeDay(day < totalDays ? day + 1 : 1);
+  // --- Manual navigation stops autoplay ---
+  const handlePrev = (fromAutoplay = false) => {
+    if (isAutoplay && !fromAutoplay) stopAutoplay();
+    changeDay(day > 1 ? day - 1 : totalDays);
+  };
+
+  const handleNext = (fromAutoplay = false) => {
+    if (isAutoplay && !fromAutoplay) stopAutoplay();
+    changeDay(day < totalDays ? day + 1 : 1);
+  };
 
   // --- Keyboard control ---
   useEffect(() => {
@@ -54,6 +62,10 @@ function Carousel() {
         case "KeyD":
           handleNext();
           break;
+        case "Space":
+          e.preventDefault();
+          toggleAutoplay();
+          break;
         default:
           break;
       }
@@ -61,7 +73,7 @@ function Carousel() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [day, isTransitioning]);
+  }, [day, isTransitioning, isAutoplay]);
 
   // --- Adjust carousel size on mount & every new image ---
   useEffect(() => {
@@ -69,24 +81,21 @@ function Carousel() {
     if (imgEl && imgEl.complete) handleImageLoad();
   }, [day]);
 
-  // --- Autoplay effect (fixed) ---
+  // --- Autoplay effect ---
   useEffect(() => {
     clearTimeout(autoplayRef.current);
 
     if (isAutoplay) {
-      // only schedule next image once transition is done
       autoplayRef.current = setTimeout(() => {
-        if (!isTransitioning) {
-          handleNext();
-        }
-      }, 3000); // wait 10s before next
+        if (!isTransitioning) handleNext(true); // ✅ pass fromAutoplay = true
+      }, 3000);
     }
 
     return () => clearTimeout(autoplayRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAutoplay, day, isTransitioning]);
 
-  // --- Toggle autoplay ---
+  // --- Autoplay control helpers ---
   const toggleAutoplay = () => {
     setIsAutoplay((prev) => {
       const newState = !prev;
@@ -94,12 +103,20 @@ function Carousel() {
     });
   };
 
+  const stopAutoplay = () => {
+    clearTimeout(autoplayRef.current);
+    setIsAutoplay(false);
+  };
+
   return (
     <div className="carousel-wrapper">
       <div className="header">
         <div className="day-indicator">Day {day}</div>
         <div className="controls">
-          <i className="fa-solid fa-arrows-rotate replay" />
+          <i
+            className={`fa-solid fa-arrows-rotate replay ${isAutoplay ? "active spinning" : ""
+              }`}
+          />
           <button className="play" onClick={toggleAutoplay}>
             <i className={`fa-solid ${isAutoplay ? "fa-pause" : "fa-play"}`} />
           </button>
@@ -117,11 +134,11 @@ function Carousel() {
       </div>
 
       <div className="text-box">
-        <button className="arrow left" onClick={handlePrev}>
+        <button className="arrow left" onClick={() => handlePrev()}>
           <i className="fa-solid fa-chevron-left" />
         </button>
         <p>{sentence}</p>
-        <button className="arrow right" onClick={handleNext}>
+        <button className="arrow right" onClick={() => handleNext()}>
           <i className="fa-solid fa-chevron-right" />
         </button>
       </div>

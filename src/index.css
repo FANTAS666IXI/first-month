@@ -82,14 +82,18 @@ button:focus {
   justify-content: center;
   color: #767676; /* color más apagado para indicar inactivo */
   font-size: 1.5rem;
-  transition: none; /* sin animación para inactivo */
   cursor: default; /* no interactivo */
+  transition: all 0.4s ease;
 }
 
-/* si más adelante se activa, se puede cambiar el estilo con una clase activa */
+/* --- Active state --- */
 .controls i.replay.active {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.5);
   color: #333;
+}
+
+.controls i.replay.spinning {
+  animation: slowSpin 6s linear infinite; /* gentle slow spin */
 }
 
 button.play {
@@ -230,4 +234,14 @@ button.play i {
   font-weight: bold;
   font-style: italic;
   color: var(--transparent);
+}
+
+/* --- Slow spin animation --- */
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

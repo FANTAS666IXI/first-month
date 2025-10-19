@@ -103,7 +103,7 @@ function Carousel() {
   return (
     <div className="carousel">
       <CarouselHeader day={day} isAutoplay={isAutoplay} toggleAutoplay={toggleAutoplay} />
-      <CarouselImage day={day} isTransitioning={isTransitioning} imgRef={imgRef} carouselRef={carouselRef} handleImageLoad={handleImageLoad} />
+      <CarouselImage day={day} isTransitioning={isTransitioning} imgRef={imgRef} carouselRef={carouselRef} handleImageLoad={handleImageLoad} TOTAL_DAYS={TOTAL_DAYS} />
       <CarouselTextBox sentence={sentence} handlePrev={() => handlePrev()} handleNext={() => handleNext()} />
     </div>
   );

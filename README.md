@@ -15,7 +15,7 @@
 
 - **STACK :**
 
-  - **FIRST MONTH** : `0.8.1`
+  - **FIRST MONTH** : `0.9.0`
   - **React** : `19.2.0`
 
 ---

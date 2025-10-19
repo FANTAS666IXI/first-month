@@ -5,8 +5,10 @@ function Carousel() {
   const lang = "en";
   const [day, setDay] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isAutoplay, setIsAutoplay] = useState(false);
   const imgRef = useRef(null);
   const carouselRef = useRef(null);
+  const autoplayRef = useRef(null);
 
   const totalDays = 31;
   const sentence = translations[lang].carousel[day];
@@ -25,7 +27,7 @@ function Carousel() {
     if (isTransitioning) return;
     setIsTransitioning(true);
 
-    // Step 1: fade out + measure current size
+    // Step 1: fade out
     setTimeout(() => {
       // Step 2: change image after fade out
       setDay(newDay);
@@ -58,7 +60,7 @@ function Carousel() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [day, isTransitioning]);
 
   // --- Adjust carousel size on mount & every new image ---
@@ -67,14 +69,39 @@ function Carousel() {
     if (imgEl && imgEl.complete) handleImageLoad();
   }, [day]);
 
+  // --- Autoplay effect (fixed) ---
+  useEffect(() => {
+    clearTimeout(autoplayRef.current);
+
+    if (isAutoplay) {
+      // only schedule next image once transition is done
+      autoplayRef.current = setTimeout(() => {
+        if (!isTransitioning) {
+          handleNext();
+        }
+      }, 3000); // wait 10s before next
+    }
+
+    return () => clearTimeout(autoplayRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAutoplay, day, isTransitioning]);
+
+  // --- Toggle autoplay ---
+  const toggleAutoplay = () => {
+    setIsAutoplay((prev) => {
+      const newState = !prev;
+      return newState;
+    });
+  };
+
   return (
     <div className="carousel-wrapper">
       <div className="header">
         <div className="day-indicator">Day {day}</div>
         <div className="controls">
           <i className="fa-solid fa-arrows-rotate replay" />
-          <button className="play">
-            <i className="fa-solid fa-play" />
+          <button className="play" onClick={toggleAutoplay}>
+            <i className={`fa-solid ${isAutoplay ? "fa-pause" : "fa-play"}`} />
           </button>
         </div>
       </div>

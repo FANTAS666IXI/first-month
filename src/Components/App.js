@@ -1,5 +1,5 @@
 import VersionWaterMark from "./VersionWaterMark"
-import Carousel from "./Carousel";
+import Carousel from "./Carousel/Carousel";
 
 function App() {
   return (

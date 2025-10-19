@@ -30,8 +30,8 @@ button:focus {
   box-shadow: none;
 }
 
-/* --- Wrapper --- */
-.carousel-wrapper {
+/* --- Carousel --- */
+.carousel {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -43,8 +43,8 @@ button:focus {
   align-items: center;
 }
 
-/* --- Header --- */
-.header {
+/* --- Carousel Header --- */
+.carousel-header {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -125,8 +125,8 @@ button.play i {
   font-size: 1.4rem;
 }
 
-/* --- Carousel --- */
-.carousel {
+/* --- Carousel Image --- */
+.carousel-image {
   width: 100%;
   max-height: 700px;
   display: flex;
@@ -139,7 +139,7 @@ button.play i {
   transition: width 0.6s ease-in-out, height 0.6s ease-in-out; /* smooth resize */
 }
 
-.carousel img {
+.carousel-image img {
   max-width: 100%;
   height: auto;
   object-fit: contain;
@@ -148,16 +148,16 @@ button.play i {
   transition: opacity 0.6s ease-in-out;
 }
 
-.carousel img.fade-out {
+.carousel-image img.fade-out {
   opacity: 0;
 }
 
-.carousel img.visible {
+.carousel-image img.visible {
   opacity: 1;
 }
 
-/* --- Text box --- */
-.text-box {
+/* --- Carousel Text box --- */
+.carousel-text-box {
   position: relative;
   margin-top: 40px;
   width: 80%;
@@ -172,7 +172,7 @@ button.play i {
   justify-content: center;
 }
 
-.text-box p {
+.carousel-text-box p {
   font-size: 1.5rem;
   font-weight: bold;
   color: #333;
@@ -203,7 +203,7 @@ button.play i {
 }
 
 .arrow.left {
-  left: -60px; /* fuera del text box */
+  left: -60px; /* fuera del carousel text box */
 }
 
 .arrow.right {

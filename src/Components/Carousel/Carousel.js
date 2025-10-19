@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import translations from "../Data/translations";
+import translations from "../../Data/translations";
+import CarouselHeader from "./CarouselHeader";
+import CarouselImage from "./CarouselImage";
+import CarouselTextBox from "./CarouselTextBox";
 
 function Carousel() {
   const lang = "en";
@@ -98,39 +101,10 @@ function Carousel() {
   };
 
   return (
-    <div className="carousel-wrapper">
-      <div className="header">
-        <div className="day-indicator">Day {day}</div>
-        <div className="controls">
-          <i
-            className={`fa-solid fa-arrows-rotate replay ${isAutoplay ? "active spinning" : ""
-              }`}
-          />
-          <button className="play" onClick={toggleAutoplay}>
-            <i className={`fa-solid ${isAutoplay ? "fa-pause" : "fa-play"}`} />
-          </button>
-        </div>
-      </div>
-
-      <div className="carousel" ref={carouselRef}>
-        <img
-          ref={imgRef}
-          src={`images/${day}.png`}
-          alt={`carousel item ${day}`}
-          className={isTransitioning ? "fade-out" : "visible"}
-          onLoad={handleImageLoad}
-        />
-      </div>
-
-      <div className="text-box">
-        <button className="arrow left" onClick={() => handlePrev()}>
-          <i className="fa-solid fa-chevron-left" />
-        </button>
-        <p>{sentence}</p>
-        <button className="arrow right" onClick={() => handleNext()}>
-          <i className="fa-solid fa-chevron-right" />
-        </button>
-      </div>
+    <div className="carousel">
+      <CarouselHeader day={day} isAutoplay={isAutoplay} toggleAutoplay={toggleAutoplay} />
+      <CarouselImage day={day} isTransitioning={isTransitioning} imgRef={imgRef} carouselRef={carouselRef} handleImageLoad={handleImageLoad} />
+      <CarouselTextBox sentence={sentence} handlePrev={() => handlePrev()} handleNext={() => handleNext()} />
     </div>
   );
 }

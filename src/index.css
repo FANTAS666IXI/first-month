@@ -62,7 +62,7 @@ button:focus {
   font-size: 1.4rem;
   font-weight: bold;
   color: #222;
-  background: rgba(173, 182, 243, 0.5);
+  background: rgba(173, 182, 243, 1);
   padding: 6px 14px;
   border-radius: 10px;
   backdrop-filter: blur(6px);
@@ -92,7 +92,7 @@ button:focus {
 
 /* --- Active state --- */
 .controls i.replay.active {
-  background: rgba(173, 182, 243, 0.5);
+  background: rgba(173, 182, 243, 1);
   color: #000000;
 }
 
@@ -101,7 +101,7 @@ button:focus {
 }
 
 button.play {
-  background: rgba(173, 182, 243, 0.4);
+  background: rgba(173, 182, 243, 0.6);
   border: none;
   color: #000000;
   font-weight: bold;
@@ -116,12 +116,12 @@ button.play {
 }
 
 button.play:hover {
-  background: rgba(173, 182, 243, 0.7);
+  background: rgba(173, 182, 243, 1);
   transform: scale(1.15);
 }
 
 button.play:active {
-  background: rgba(173, 182, 243, 0.5);
+  background: rgba(173, 182, 243, 0.6);
   transform: scale(1);
 }
 
@@ -166,7 +166,7 @@ button.play i {
   margin-top: 40px;
   width: 80%;
   text-align: center;
-  background: rgb(173, 182, 243);
+  background: rgba(173, 182, 243, 0.8);
   padding: 15px 60px; /* espacio extra para flechas */
   border: 4px solid rgba(159, 92, 214, 0.418);
   border-radius: 15px;
@@ -190,7 +190,7 @@ button.play i {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(173, 182, 243, 0.4);
+  background: rgba(173, 182, 243, 0.6);
   border: none;
   color: #000000;
   font-size: 2rem;
@@ -215,12 +215,12 @@ button.play i {
 }
 
 .arrow:hover {
-  background: rgba(173, 182, 243, 0.7);
+  background: rgba(173, 182, 243, 1);
   transform: translateY(-50%) scale(1.15);
 }
 
 .arrow:active {
-  background: rgba(173, 182, 243, 0.5);
+  background: rgba(173, 182, 243, 0.6);
   transform: translateY(-50%) scale(1);
 }
 

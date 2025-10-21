@@ -1,12 +1,17 @@
-import VersionWaterMark from "./VersionWaterMark"
+import VersionWaterMark from "./VersionWaterMark";
 import Carousel from "./Carousel/Carousel";
+import AppProviders from "../Providers/AppProviders";
+import LanguageFlag from "./LanguageFlag";
 
 function App() {
   return (
-    <div className="app">
-      <Carousel />
-      <VersionWaterMark />
-    </div>
+    <AppProviders>
+      <div className="app">
+        <LanguageFlag />
+        <Carousel />
+        <VersionWaterMark />
+      </div>
+    </AppProviders>
   );
 }
 

@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import translations from "../../Data/translations";
+import { useState, useEffect, useRef, useContext } from "react";
+import { TranslationsContext } from "../../Contexts/TranslationsContext"
 import CarouselHeader from "./CarouselHeader";
 import CarouselImage from "./CarouselImage";
 import CarouselTextBox from "./CarouselTextBox";
 
 function Carousel() {
-  const lang = "en";
   const TOTAL_DAYS = 31;
   const FADE_OUT_DURATION = 500;
   const TRANSITION_END_DELAY = 1000;
@@ -17,7 +16,15 @@ function Carousel() {
   const carouselRef = useRef(null);
   const autoplayRef = useRef(null);
 
-  const sentence = translations[lang].carousel[day];
+  /**
+   * Translations context.
+   * @type {{object}}.
+   */
+  const { translations } = useContext(TranslationsContext)
+  const texts = translations.carousel;
+
+  // const sentence = translations.carousel[day.toString().padStart(2, "0")];
+  const sentence = texts[day];
 
   // --- Adjust carousel size when image loads ---
   const handleImageLoad = () => {

@@ -22,7 +22,11 @@ img {
 
 html {
   height: 100%;
-  background-color: var(--background);
+  /* background-color: var(--background); */
+  background-image: url("../public/images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 button:focus {
@@ -58,7 +62,7 @@ button:focus {
   font-size: 1.4rem;
   font-weight: bold;
   color: #222;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(173, 182, 243, 0.5);
   padding: 6px 14px;
   border-radius: 10px;
   backdrop-filter: blur(6px);
@@ -73,14 +77,14 @@ button:focus {
 
 .controls i.replay {
   pointer-events: none; /* decorativo, sin interacción */
-  background: rgba(227, 227, 227, 0.4); /* más tenue que play */
+  background: rgba(173, 182, 243, 0.4); /* más tenue que play */
   border-radius: 50%;
   width: 45px;
   height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #767676; /* color más apagado para indicar inactivo */
+  color: #3f3f3f; /* color más apagado para indicar inactivo */
   font-size: 1.5rem;
   cursor: default; /* no interactivo */
   transition: all 0.4s ease;
@@ -88,8 +92,8 @@ button:focus {
 
 /* --- Active state --- */
 .controls i.replay.active {
-  background: rgba(255, 255, 255, 0.5);
-  color: #333;
+  background: rgba(173, 182, 243, 0.5);
+  color: #000000;
 }
 
 .controls i.replay.spinning {
@@ -97,9 +101,9 @@ button:focus {
 }
 
 button.play {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(173, 182, 243, 0.4);
   border: none;
-  color: #333;
+  color: #000000;
   font-weight: bold;
   border-radius: 50%;
   width: 45px;
@@ -112,12 +116,12 @@ button.play {
 }
 
 button.play:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(173, 182, 243, 0.7);
   transform: scale(1.15);
 }
 
 button.play:active {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(173, 182, 243, 0.5);
   transform: scale(1);
 }
 
@@ -162,9 +166,9 @@ button.play i {
   margin-top: 40px;
   width: 80%;
   text-align: center;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(173, 182, 243);
   padding: 15px 60px; /* espacio extra para flechas */
-  border: 4px solid rgba(255, 255, 255, 0.4);
+  border: 4px solid rgba(159, 92, 214, 0.418);
   border-radius: 15px;
   backdrop-filter: blur(10px);
   display: flex;
@@ -175,7 +179,7 @@ button.play i {
 .carousel-text-box p {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: #000000;
   line-height: 1.4;
   margin: 0;
   z-index: 1;
@@ -186,9 +190,9 @@ button.play i {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(173, 182, 243, 0.4);
   border: none;
-  color: #333;
+  color: #000000;
   font-size: 2rem;
   font-weight: bold;
   border-radius: 50%;
@@ -211,12 +215,12 @@ button.play i {
 }
 
 .arrow:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(173, 182, 243, 0.7);
   transform: translateY(-50%) scale(1.15);
 }
 
 .arrow:active {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(173, 182, 243, 0.5);
   transform: translateY(-50%) scale(1);
 }
 

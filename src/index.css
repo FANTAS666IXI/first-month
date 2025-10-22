@@ -34,6 +34,110 @@ button:focus {
   box-shadow: none;
 }
 
+.music-control {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.music-button {
+  background: rgba(173, 182, 243, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(6px);
+}
+
+.music-button:hover {
+  background: rgba(173, 182, 243, 1);
+  transform: scale(1.1);
+}
+
+.music-ui {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* separa el botón del slider */
+}
+
+/* --- Volume Slider --- */
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 110px;
+  height: 8px;
+  border-radius: 10px;
+  background: rgba(173, 182, 243, 0.6);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover/active visual */
+.volume-slider:hover {
+  background: rgba(173, 182, 243, 1);
+  transform: scaleX(1.05);
+}
+
+/* Thumb (punto deslizante) */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #9f5cd6;
+  border: 2px solid #fff;
+  cursor: grab;
+  transition: all 0.3s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  background: #b775f0;
+  transform: scale(1.15);
+}
+
+/* Para Firefox */
+.volume-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #9f5cd6;
+  border: 2px solid #fff;
+  cursor: grab;
+  transition: all 0.3s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  background: #b775f0;
+  transform: scale(1.15);
+}
+
+.language-flag-container {
+  margin-top: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.language-flag {
+  width: 6rem;
+  height: 4rem;
+  border: 4px solid rgb(16, 16, 16);
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.6s ease, border-color 0.6s ease;
+}
+
+.language-flag:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 /* --- Carousel --- */
 .carousel {
   position: fixed;
@@ -79,8 +183,8 @@ button:focus {
   pointer-events: none; /* decorativo, sin interacción */
   background: rgba(173, 182, 243, 0.4); /* más tenue que play */
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,8 +210,8 @@ button.play {
   color: #000000;
   font-weight: bold;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   transition: all 0.5s ease;
   display: flex;
@@ -196,8 +300,8 @@ button.play i {
   font-size: 2rem;
   font-weight: bold;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   transition: all 0.5s ease;
   display: flex;
@@ -227,28 +331,6 @@ button.play i {
 .arrow i {
   font-size: 1.5rem;
   transform: scaleX(1.2); /* ligeramente más ancho horizontalmente */
-}
-
-.language-flag-container {
-  margin-top: 20px;
-  margin-right: 20px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.language-flag {
-  width: 6rem;
-  height: 4rem;
-  border: 4px solid rgb(16, 16, 16);
-  border-radius: 12px;
-  object-fit: cover;
-  transition: transform 0.6s ease, border-color 0.6s ease;
-}
-
-.language-flag:hover {
-  cursor: pointer;
-  transform: scale(1.05);
 }
 
 /* --- Version watermark --- */

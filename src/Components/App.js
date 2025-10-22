@@ -1,4 +1,3 @@
-import VersionWaterMark from "./VersionWaterMark";
 import Carousel from "./Carousel/Carousel";
 import AppProviders from "../Providers/AppProviders";
 import LanguageFlag from "./LanguageFlag";
@@ -11,7 +10,6 @@ function App() {
         <BackgroundMusic />
         <LanguageFlag />
         <Carousel />
-        <VersionWaterMark />
       </div>
     </AppProviders>
   );

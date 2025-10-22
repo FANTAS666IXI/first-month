@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 function BackgroundMusic() {
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [volume, setVolume] = useState(0.6); // default volume
+    const [volume, setVolume] = useState(0.3); // default volume
 
     useEffect(() => {
         const audio = audioRef.current;

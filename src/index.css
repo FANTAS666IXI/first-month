@@ -267,11 +267,11 @@ button.play i {
 /* --- Carousel Text box --- */
 .carousel-text-box {
   position: relative;
-  margin-top: 40px;
+  margin-top: 20px;
   width: 80%;
   text-align: center;
   background: rgba(173, 182, 243, 0.8);
-  padding: 15px 60px; /* espacio extra para flechas */
+  padding: 15px 20px; /* espacio extra para flechas */
   border: 4px solid rgba(159, 92, 214, 0.418);
   border-radius: 15px;
   backdrop-filter: blur(10px);
@@ -311,11 +311,11 @@ button.play i {
 }
 
 .arrow.left {
-  left: -60px; /* fuera del carousel text box */
+  left: -70px; /* fuera del carousel text box */
 }
 
 .arrow.right {
-  right: -60px;
+  right: -70px;
 }
 
 .arrow:hover {
@@ -331,17 +331,6 @@ button.play i {
 .arrow i {
   font-size: 1.5rem;
   transform: scaleX(1.2); /* ligeramente más ancho horizontalmente */
-}
-
-/* --- Version watermark --- */
-.version__watermark {
-  position: fixed;
-  bottom: 0;
-  right: 1rem;
-  font-size: 2rem;
-  font-weight: bold;
-  font-style: italic;
-  color: black;
 }
 
 /* --- Slow spin animation --- */

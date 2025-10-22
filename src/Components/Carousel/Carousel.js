@@ -8,7 +8,7 @@ function Carousel() {
   const TOTAL_DAYS = 31;
   const FADE_OUT_DURATION = 500;
   const TRANSITION_END_DELAY = 1000;
-  const AUTOPLAY_DELAY = 3000;
+  const AUTOPLAY_DELAY = 10000;
   const [day, setDay] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isAutoplay, setIsAutoplay] = useState(false);
@@ -28,11 +28,15 @@ function Carousel() {
 
   // --- Adjust carousel size when image loads ---
   const handleImageLoad = () => {
-    if (imgRef.current && carouselRef.current) {
-      const { width, height } = imgRef.current.getBoundingClientRect();
-      carouselRef.current.style.width = `${width}px`;
-      carouselRef.current.style.height = `${height}px`;
-    }
+    const img = imgRef.current;
+    const container = carouselRef.current;
+    if (!img || !container) return;
+
+    // Esperamos un microtimeout para asegurarnos de que el fade-in está activo
+    setTimeout(() => {
+      container.style.width = `${img.naturalWidth}px`;
+      container.style.height = `${img.naturalHeight}px`;
+    }, 50); // 50ms es suficiente
   };
 
   // --- Transition control ---
@@ -47,12 +51,19 @@ function Carousel() {
   // --- Manual navigation stops autoplay ---
   const handlePrev = (fromAutoplay = false) => {
     if (isAutoplay && !fromAutoplay) stopAutoplay();
-    changeDay(day > 1 ? day - 1 : TOTAL_DAYS);
+    changeDay(day > 1 ? day - 1 : day);
   };
 
   const handleNext = (fromAutoplay = false) => {
     if (isAutoplay && !fromAutoplay) stopAutoplay();
-    changeDay(day < TOTAL_DAYS ? day + 1 : 1);
+
+    if (day < TOTAL_DAYS - 1) {
+      changeDay(day + 1);
+    } else {
+      // Llegamos al último día
+      changeDay(TOTAL_DAYS);
+      stopAutoplay(); // detener autoplay automáticamente
+    }
   };
 
   // --- Keyboard control ---

@@ -20,7 +20,7 @@ export default function CarouselImage({ day, isTransitioning, imgRef, carouselRe
         <div className="carousel-image" ref={carouselRef}>
             <img
                 ref={imgRef}
-                src={`images/${day}.png`}
+                src={`images/carousel/${day}.png`}
                 alt={`carousel item ${day}`}
                 className={isTransitioning ? "fade-out" : "visible"}
                 loading="lazy" // native lazy loading
